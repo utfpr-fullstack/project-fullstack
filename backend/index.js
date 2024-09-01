@@ -1,6 +1,8 @@
 const express = require ('express');
 const cors = require('cors');
+
 const UserRoutes = require('./routes/UserRoutes');
+const MovieRoutes = require('./routes/MovieRoutes');
 
 const app = express();
 
@@ -13,5 +15,7 @@ app.use(express.static('public'));
 
 //Rotas
 app.use('/users', UserRoutes)
+app.use('/movies', MovieRoutes)
+
 app.listen(5000)
 
