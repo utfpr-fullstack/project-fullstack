@@ -126,6 +126,10 @@ module.exports = class UserController {
 
         let image = ''
 
+        if(req.file) {
+            user.image = req.file.filename;
+        }
+
         if(!name) {
             return res.status(422).json({message: "Name is required"});
         }
