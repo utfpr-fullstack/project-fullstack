@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const createToken = require('../helpers/token');
 
 module.exports = class UserController {
     static async register(req, res) {
@@ -29,6 +30,12 @@ module.exports = class UserController {
             return res.status(422).json({message: "Passwords do not match"});
         }
 
+        const userExists = await User.findOne({email: email});
+
+        if(userExists) {
+            return res.status(422).json({message: "User already exists"});
+        }
+
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(password, salt);
 
@@ -41,7 +48,8 @@ module.exports = class UserController {
 
         try {
             const newUser = await user.save();
-            return res.status(201).json({message: "User created", user: newUser});
+            await createToken(newUser, req, res);
+
         } catch (error) {
             return res.status(500).json({message: error.message});
         }
