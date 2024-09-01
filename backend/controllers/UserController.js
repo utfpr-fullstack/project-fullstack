@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const createToken = require('../helpers/create-token');
 const getToken = require('../helpers/get-token');
+const getUserByToken = require('../helpers/get-user-by-token');
 
 module.exports = class UserController {
     static async register(req, res) {
@@ -113,5 +114,58 @@ module.exports = class UserController {
 
         res.status(200).json({ user });
 
+    }
+
+    static async editUser(req, res) {
+        const id = req.params.id;
+
+        const token = getToken(req);
+        const user = await getUserByToken(token)
+
+        const {name, email, phone, password, confirmPassword} = req.body;
+
+        let image = ''
+
+        if(!name) {
+            return res.status(422).json({message: "Name is required"});
+        }
+
+        if(!email) {
+            return res.status(422).json({message: "Email is required"});
+        }
+
+        const userExist = await User.findOne({email: email});
+
+        if(user.email !== email && userExist) {
+            return res.status(422).json({message: "Please, choose another email"});
+        }
+        user.email = email;
+
+        if(!phone) {
+            return res.status(422).json({message: "Phone is required"});
+        }
+
+        user.phone = phone;
+
+        if(password !== confirmPassword) {
+            return res.status(422).json({message: "Passwords do not match"});
+        } else if(password === confirmPassword && password !== null) {
+            const salt = await bcrypt.genSalt(12);
+            const passwordHash = await bcrypt.hash(password, salt);
+
+            user.password = passwordHash;
+        }
+
+        try {
+            await User.findOneAndUpdate(
+                {_id: user._id},
+                { $set: user},
+                {new: true},
+
+            );
+            res.status(200).json({message: "User updated successfully"});
+        } catch (err) {
+            return res.status(500).json({message: err.message});
+        }
     }
 }
