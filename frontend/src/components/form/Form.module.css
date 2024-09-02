@@ -26,7 +26,19 @@
 .form_container p a {
     color: #4cacaf;
     font-weight: bold;
+}
 
+.preview_movie_images {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.preview_movie_images img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-left: 1em;
 }
 
 

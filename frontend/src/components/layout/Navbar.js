@@ -33,6 +33,9 @@ const Navbar = () => {
                 {authenticating ? (
                     <>
                         <li>
+                            <Link to="/movies/myMovies">My Movies</Link>
+                        </li>
+                        <li>
                             <Link to="/user/profile">Profile</Link>
                         </li>
                         <li onClick={logout}>Logout</li>

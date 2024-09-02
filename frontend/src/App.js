@@ -10,6 +10,8 @@ import Register from './components/pages/Auth/Register';
 import Home from './components/pages/Home';
 import Search from './components/pages/Search';
 import Profile from './components/pages/User/Profile';
+import AddMovie from "./components/pages/Movie/AddMovie";
+import MyMovies from './components/pages/Movie/MyMovies';
 
 import { UserProvider } from './context/UserContext';
 
@@ -26,6 +28,8 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="/user/profile" element={<Profile />} />
+                        <Route path="/movies/myMovies" element={<MyMovies />} />
+                        <Route path="/movies/add" element={<AddMovie />} />
                     </Routes>
                 </Container>
                 <Footer />

@@ -6,6 +6,7 @@ import styles from './Profile.module.css'
 import formStyles from '../../form/Form.module.css';
 
 import Input from '../../form/input.js';
+import Image from '../../layout/Image.js';
 
 import useMessage from '../../../hooks/useMessage.js';
 function Profile() {
@@ -71,7 +72,7 @@ function Profile() {
             <div className={styles.profile_header}>
                 <h1>Profile</h1>
                 {(user.image || preview) &&(
-                    <img src={preview ? URL.createObjectURL(preview) : `${process.env.REACT_APP_API}/img/user/${user.image}`
+                    <Image src={preview ? URL.createObjectURL(preview) : `${process.env.REACT_APP_API}/img/user/${user.image}`
                     }
                     alt={user.name}
                     />
