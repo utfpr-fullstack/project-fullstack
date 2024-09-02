@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import CameraIndoorIcon from '@mui/icons-material/CameraIndoor';
 import SearchIcon from '@mui/icons-material/Search';
 
 import styles from './Navbar.module.css';
 
+import { Context } from '../../context/UserContext';
 const Navbar = () => {
 
+    const { authenticating, logout } = useContext(Context);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
@@ -27,12 +30,20 @@ const Navbar = () => {
                 <li>
                     <Link to="/">Alugar</Link>
                 </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-                <li>
-                    <Link to="/register">Cadastrar</Link>
-                </li>
+                {authenticating ? (
+                    <>
+                        <li onClick={logout}>Logout</li>
+                    </>
+                ) : (
+                    <>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/register">Cadastrar</Link>
+                        </li>
+                    </>
+                )}
             </ul>
             <form onSubmit={submitHandler}>
                 <input type="search" placeholder="Digite o nome do filme"

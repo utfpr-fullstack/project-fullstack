@@ -38,8 +38,19 @@ export default function useAuth() {
     async function authenticationUser(data) {
         setAuthenticating(true);
         localStorage.setItem('token', JSON.stringify(data.token));
-        history.push('/')
+        history('/')
     }
 
-    return { authenticating, register };
+    function logout() {
+        setAuthenticating(false);
+        localStorage.removeItem('token');
+        api.defaults.headers.Authorization = undefined;
+        history('/')
+
+        let message1 = 'Logout successful.';
+        let type = 'success';
+        message(message1, type);
+    }
+
+    return { authenticating, register, logout };
 }
