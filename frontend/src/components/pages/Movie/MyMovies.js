@@ -6,7 +6,7 @@ import useMessage from '../../../hooks/useMessage.js';
 import styles from './Dash.module.css';
 import api from "../../../utils/api";
 
-function MyMovies(){
+function MyMovies() {
 
     const [movies, setMovies] = useState([]);
 
@@ -25,11 +25,34 @@ function MyMovies(){
         })
     }, [token])
 
+    async function removeMovie(id) {
+        let msg = 'Movie removed successfully.'
+        let type = 'success'
+
+        const data = await api.delete(`/movies/${id}`, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+
+            }
+        }).then((response) => {
+            const updatedMovies = movies.filter((movie) => movie._id !== id)
+            setMovies(updatedMovies)
+            return response.data
+        })
+            .catch((erro) => {
+                type = 'error'
+                msg =  erro.response.data.message
+
+                return erro.response.data
+            })
+        message(msg, type);
+    }
+
     return (
         <section>
             <div className={styles.movielist_header}>
-            <h1>My Movies</h1>
-            <Link to="/movies/add">Cadastrar filme</Link>
+                <h1>My Movies</h1>
+                <Link to="/movies/add">Cadastrar filme</Link>
             </div>
             <div className={styles.movielist_container}>
                 {movies.length > 0 &&
@@ -42,7 +65,9 @@ function MyMovies(){
                             <span>{movie.title}</span>
                             <div className={styles.actions}>
                                 <Link to={`/movies/edit/${movie._id}`}>Editar</Link>
-                                <button>Excluir</button>
+                                <button onClick={() =>{
+                                    removeMovie(movie._id)
+                                }}>Excluir</button>
                             </div>
                         </div>
                     ))

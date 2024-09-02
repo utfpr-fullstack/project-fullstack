@@ -12,6 +12,7 @@ import Search from './components/pages/Search';
 import Profile from './components/pages/User/Profile';
 import AddMovie from "./components/pages/Movie/AddMovie";
 import MyMovies from './components/pages/Movie/MyMovies';
+import EditMovie from "./components/pages/Movie/EditMovie";
 
 import { UserProvider } from './context/UserContext';
 
@@ -30,6 +31,7 @@ function App() {
                         <Route path="/user/profile" element={<Profile />} />
                         <Route path="/movies/myMovies" element={<MyMovies />} />
                         <Route path="/movies/add" element={<AddMovie />} />
+                        <Route path="/movies/edit/:id" element={<EditMovie />} />
                     </Routes>
                 </Container>
                 <Footer />
