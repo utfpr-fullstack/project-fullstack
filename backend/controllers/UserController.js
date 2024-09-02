@@ -152,8 +152,10 @@ module.exports = class UserController {
         user.phone = phone;
 
         if(password !== confirmPassword) {
-            return res.status(422).json({message: "Passwords do not match"});
-        } else if(password === confirmPassword && password !== null) {
+            res.status(422).json({message: "Passwords do not match"});
+            return
+        } else if(password === confirmPassword && password != null) {
+
             const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(password, salt);
 

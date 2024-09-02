@@ -177,9 +177,7 @@ module.exports = class MovieController {
 
         }
 
-        if(images.length === 0) {
-            return res.status(422).json({message: 'Images are required'});
-        } else {
+        if(images.length > 0) {
             updatedData.images = [];
             images.map((image) => {
                 updatedData.images.push(image.filename)
@@ -211,5 +209,4 @@ module.exports = class MovieController {
         await Movie.findByIdAndUpdate(id, movie);
         res.status(200).json({message: 'Movie rented'});
     }
-
 }

@@ -13,5 +13,4 @@ router.delete("/:id", verifyToken, MovieController.deleteMovieById)
 router.patch("/:id", verifyToken, imageUpload.array('images'), MovieController.updateMovie)
 router.patch("/doRent/:id", verifyToken, MovieController.doRent)
 
-
 module.exports = router;
