@@ -32,7 +32,6 @@ function MyMovies() {
         const data = await api.delete(`/movies/${id}`, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`,
-
             }
         }).then((response) => {
             const updatedMovies = movies.filter((movie) => movie._id !== id)
