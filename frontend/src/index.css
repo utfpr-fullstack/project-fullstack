@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #16479D;
+  margin-bottom: 1em;
+  font-size: 2.1em;
+}
+
+.bold {
+  font-weight: bold;
+  color: #16479D;
+}
+
+
+a {
+  text-decoration: none;
+  color: #102C57;
+}
+
+a:hover {
+  color: #448c92;
+}
