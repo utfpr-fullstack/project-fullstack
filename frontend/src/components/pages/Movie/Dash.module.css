@@ -1,0 +1,56 @@
+.movielist_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.movielist_header a {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.3em 0.5em;
+    background-color: #45a0a4;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #45a0a4;;
+}
+
+.movielist_header a:hover {
+    background-color: #3a8f93;
+}
+
+.movielist_header h1 {
+    margin: 0;
+}
+
+.movielist_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.movielist_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+}
+
+.actions a,
+.actions button {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.3em 0.5em;
+    background-color: #45a0a4;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #45a0a4;
+    font-size: 13px;
+    margin-right: 13px;
+}
+
+.actions a:hover,
+.actions button:hover{
+    background-color: #3a8f93;
+}
