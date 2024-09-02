@@ -9,6 +9,7 @@ import Login from './components/pages/Auth/Login';
 import Register from './components/pages/Auth/Register';
 import Home from './components/pages/Home';
 import Search from './components/pages/Search';
+import Profile from './components/pages/User/Profile';
 
 import { UserProvider } from './context/UserContext';
 
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/search" element={<Search />} />
+                        <Route path="/user/profile" element={<Profile />} />
                     </Routes>
                 </Container>
                 <Footer />

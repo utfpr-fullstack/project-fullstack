@@ -32,6 +32,9 @@ const Navbar = () => {
                 </li>
                 {authenticating ? (
                     <>
+                        <li>
+                            <Link to="/user/profile">Profile</Link>
+                        </li>
                         <li onClick={logout}>Logout</li>
                     </>
                 ) : (
