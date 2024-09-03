@@ -13,6 +13,7 @@ import Profile from './components/pages/User/Profile';
 import AddMovie from "./components/pages/Movie/AddMovie";
 import MyMovies from './components/pages/Movie/MyMovies';
 import EditMovie from "./components/pages/Movie/EditMovie";
+import MovieDetails from "./components/pages/Movie/MovieDetails";
 
 import { UserProvider } from './context/UserContext';
 
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/movies/myMovies" element={<MyMovies />} />
                         <Route path="/movies/add" element={<AddMovie />} />
                         <Route path="/movies/edit/:id" element={<EditMovie />} />
+                        <Route path="/movie/:id" element={<MovieDetails />} />
                     </Routes>
                 </Container>
                 <Footer />
