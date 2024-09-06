@@ -1,0 +1,55 @@
+.container__title {
+    color: #102C57;
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+}
+
+.container__movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    max-width: 1200px;
+    gap: 3.2em;
+    margin: 0 auto;
+}
+
+.container__movies div {
+    width: 30%;
+    background-color: #EADBC8;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.container__movies img,
+.container__movies h2,
+.container__movies p {
+    margin-bottom: 1rem;
+}
+
+.container__movies div svg {
+    color: #9fa90f;
+}
+
+.container__movies a {
+    text-align: center;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 5px;
+    border: none;
+    background-color: #102C57;
+    color: white;
+    transition: .5s;
+    font-weight: bold;
+}
+
+.container__movies a:hover {
+    background-color: #1A75BB;
+}
+
+
+

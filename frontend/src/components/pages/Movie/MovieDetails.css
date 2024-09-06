@@ -1,0 +1,24 @@
+.movie__page {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    text-align: center;
+}
+
+.movie__page svg {
+    color: #9fa90f;
+}
+.movie__resume {
+    margin-top: 0.5em;
+}
+
+.movie__info {
+    text-align: center;
+}
+
+.movie__info h3, p {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    gap: .3em;
+}

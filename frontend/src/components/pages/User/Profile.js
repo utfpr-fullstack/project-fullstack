@@ -50,7 +50,7 @@ function Profile() {
         const formData = new FormData();
 
         await Object.keys(user).forEach((key) => formData.append(key, user[key]),
-            );
+        );
 
         const data = await api.patch(`/users/edit/${user._id}`, formData, {
             headers: {
@@ -60,10 +60,10 @@ function Profile() {
         }).then((response) => {
             return response.data;
         })
-        .catch((error) => {
-            type = 'error'
-            msg =  error.response.data.message
-        })
+            .catch((error) => {
+                type = 'error'
+                msg =  error.response.data.message
+            })
         message(msg, type);
     }
 
@@ -74,7 +74,7 @@ function Profile() {
                 {(user.image || preview) &&(
                     <Image src={preview ? URL.createObjectURL(preview) : `${process.env.REACT_APP_API}/img/user/${user.image}`
                     }
-                    alt={user.name}
+                           alt={user.name}
                     />
                 )}
             </div>

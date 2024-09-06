@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-
+import ReactDOM from 'react-dom/client'
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Container from "./components/layout/Container";
@@ -14,6 +14,7 @@ import AddMovie from "./components/pages/Movie/AddMovie";
 import MyMovies from './components/pages/Movie/MyMovies';
 import EditMovie from "./components/pages/Movie/EditMovie";
 import MovieDetails from "./components/pages/Movie/MovieDetails";
+import Movie from "./components/pages/Movie/Movie";
 
 import { UserProvider } from './context/UserContext';
 
@@ -33,7 +34,8 @@ function App() {
                         <Route path="/movies/myMovies" element={<MyMovies />} />
                         <Route path="/movies/add" element={<AddMovie />} />
                         <Route path="/movies/edit/:id" element={<EditMovie />} />
-                        <Route path="/movie/:id" element={<MovieDetails />} />
+                        {/*<Route path="/movie/:id" element={<MovieDetails />} />*/}
+                        <Route path="/movie/:id" element={<Movie />} />
                     </Routes>
                 </Container>
                 <Footer />

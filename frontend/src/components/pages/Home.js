@@ -1,44 +1,36 @@
-import api from '../../utils/api';
+import { useState, useEffect} from 'react';
+import MovieComponent from "../../components/MovieComponent"
+import "../../components/MovieGrid.css"
 
-import {useState, useEffect} from 'react';
+const movieURL = "https://api.themoviedb.org/3/movie/"
+const apiKey = "api_key=75494e8a3b20677db6d1758718e3be64"
 
-import {Link} from 'react-router-dom';
+const Home = () => {
+    const [topMovies, setTopMovies] = useState([]);
 
-import styles from './Home.module.css';
+    const getTopMovies = async (url) => {
+        const response = await fetch(url);
+        const data = await response.json();
 
-function Home() {
-    const[movies, setMovie] = useState([]);
+        setTopMovies(data.results);
+    };
 
     useEffect(() => {
-        api.get('/movies').then(response => {
-            setMovie(response.data.movies);
-        });
+        const topRatedMoviesUrl = `${movieURL}top_rated?${apiKey}`;
+
+        getTopMovies(topRatedMoviesUrl);
     }, []);
 
-    return(
-        <section>
-            <div className={styles.movie_home_header}>
-                <h1>Home</h1>
-                <p>Welcome to the Home page!</p>
-            </div>
-            <div className={styles.movie_home_container}>
-                {movies.length > 0 &&
-                    movies.map(movie => (
-                        <div className={styles.movie_card}>
-                            <div style={{backgroundImage: `url(${process.env.REACT_APP_API}/img/movies/${movie.images[0]})`}} className={styles.movie_card_img}></div>
-                            <h3>{movie.title}</h3>
-                            <p>
-                                <span className="bold">Título:</span> {movie.title}
-                            </p>
-                            <Link to={`movie/${movie._id}`}>Mais detalhes</Link>
-                        </div>
-                    ))}
-                {movies.length === 0 && (
-                    <p>nao tem pet</p>
-                )}
-            </div>
-        </section>
-    );
-}
 
+    return (
+        <div className="container">
+            <h2 className="container__title">Best Movies: </h2>
+            <div className="container__movies">
+                {topMovies.length === 0 && <p>Loading...</p>}
+                {topMovies.length > 0 && topMovies.map((movie) => <MovieComponent key={movie.id} movie={movie} />)}
+            </div>
+
+        </div>
+    );
+};
 export default Home;
