@@ -1,11 +1,18 @@
-require('dotenv').config()
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 async function connect() {
-    await mongoose.connect(process.env.DB_CONNECTION)
-    console.log('Database connected')
+    try {
+        await mongoose.connect(process.env.DB_CONNECTION, {
+            maxPoolSize: 10, 
+            serverSelectionTimeoutMS: 5000 
+        });
+        console.log('Database connected');
+    } catch (err) {
+        console.log('Database connection error:', err);
+    }
 }
 
-connect().catch((err) => console.log(err))
+connect();
 
-module.exports =  mongoose
+module.exports = mongoose;
